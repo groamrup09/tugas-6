@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Polimorfisme dan Abstraksi</title>
+  <title>  Multiple Inheritance & Class Modifiers(Sealed, Base, Final)</title>
 
   <style>
     body {
@@ -493,51 +493,43 @@ interface (Dart 3.0+)
 </div>
     
 
-    <h2> Praktik 1 – Polimorfisme dengan List</h2>
+    <h2> Sealed Class</h2>
     <div class="card">
+      <pre>
+        Tidak bisa di-extend atau di-implement dari luar library
+        Membatasi hierarki tipe yang diketahui saat compile-time
+        Perfect untuk pattern matching (switch exhaustive)
+      </pre>
     <pre>
 // Nama   : Azriel Miracle Yuandre
 // Nim    : 251410024
 // Kelas  : Si2A
-      class Hewan {
-  void bersuara() => print('...');
+     // nama file: main.dart
+
+sealed class ApiResponse {}
+
+class Success extends ApiResponse {
+  final String message;
+  Success(this.message);
 }
 
-class Kucing extends Hewan {
-  @override
-  void bersuara() => print('Meong');
-}
-
-class Anjing extends Hewan {
-  @override
-  void bersuara() => print('Guk Guk');
-}
-
-class Burung extends Hewan {
-  @override
-  void bersuara() => print('Cit Cit');
+class Error extends ApiResponse {
+  final String errorMessage;
+  Error(this.errorMessage);
 }
 
 void main() {
-  // Membuat list dengan berbagai objek subclass
-  List<Hewan> daftarHewan = [
-    Kucing(),
-    Anjing(),
-    Burung(),
-    Kucing(),
-    Anjing(),
-  ];
-  
-  // Loop list dan panggil method bersuara()
-  print('Suara-suara hewan:');
-  for (var hewan in daftarHewan) {
-    hewan.bersuara();
+  // contoh penggunaan
+  ApiResponse response = Success("Data berhasil diambil");
+
+  if (response is Success) {
+    print("Success: ${response.message}");
+  } else if (response is Error) {
+    print("Error: ${response.errorMessage}");
   }
 }
     </pre>
-  <button class="btn" onclick="openModal('87958f06e6ead274cc976e3913dda31d')">
-        Lihat Kode
-      </button>
+ <img src="gambar-6-2.png" alt="gambar">
       
     </div>
 
