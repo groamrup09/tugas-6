@@ -534,7 +534,10 @@ void main() {
 <button class="btn" onclick="openModal('slide 6-2.png')">
   Lihat Gambar
 </button>
-      
+      <div id="modal" style="display:none;">
+  <span onclick="closeModal()" style="cursor:pointer;">❌</span>
+  <img id="modal-img" src="" style="max-width:80%;">
+</div>
     </div>
 
     <h2> Pengantar Abstraksi</h2>
@@ -1630,6 +1633,15 @@ berbeda
       const modal = document.getElementById("dynamicModal");
       if (event.target == modal) closeModal();
     }
+
+function openModal(src) {
+  document.getElementById("modal").style.display = "block";
+  document.getElementById("modal-img").src = src;
+}
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
 
 
   </script>
