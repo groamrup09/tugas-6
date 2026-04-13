@@ -627,40 +627,31 @@ Tapi bisa di-extend/implement di dalam library yang sama
 Berguna untuk class yang ingin "ditutup" untuk modifikasi
         </pre>
       </p>
-
       <pre>
 // Nama   : Azriel Miracle Yuandre
 // Nim    : 251410024
 // Kelas  : SI2A
 
-// libfinal.dart
-
+//--source 
+//libfinal.dart
+//----
 final class Settings {
-  final String theme;
-  final int fontSize;
-
-  Settings({required this.theme, required this.fontSize});
-
-  void showSettings() {
-    print("Theme: $theme, Font Size: $fontSize");
-  }
+final String theme;
+final int fontSize;
+Settings({required this.theme, required this.fontSize});
+void showSettings() {
+print("Theme: ${theme}, Font Size:${fontSize}");
+}
+}
+base class CustomSettings extends Settings {
+CustomSettings(String theme, int fontSize) : super(theme: theme, fontSize: fontSize);
 }
   </pre>
-
+<h3>Final Class(lanjutan)</h3>
       <pre>
-import 'libfinal.dart';
-
-void main() {
-  Settings s = Settings(theme: "Dark", fontSize: 14);
-  s.showSettings();
-}
-      </pre>
-
- <img src="slide10.png" alt="gambar">
-    </div>
-
-    <h2> Final Class(lanjutan)</h2>
-    <div class="card">
+// Nama   : Azriel Miracle Yuandre
+// Nim    : 251410024
+// Kelas  : SI2A       
 <h3>File 1: libfinal.dart</h3>
       <pre>
 // libfinal.dart
@@ -693,10 +684,11 @@ void main() {
   Settings settings = Settings(theme: "Dark", fontSize: 14);
   settings.showSettings();
 }
+
       </pre>
 
  <img src="slide11.png" alt="gambar">
-</div>
+    </div>
 
 
 
@@ -746,88 +738,116 @@ void main() {
 </table>
 </div>
     
-    <h2>Static Members dan Method</h2>
+    <h2> Praktik 1 – Sealed Class dengan Pattern Matching</h2>
     <div class="card">
-      <ul>
-        <li>
-          Static members adalah properti atau method yang dimiliki oleh class itu
-          sendiri, bukan oleh objek class. Static member diakses langsung melalui
-          class name.
-          Properti dan method static sangat berguna untuk membuat utility class
-          atau menyimpan konstanta yang terkait dengan class, sehingga dapat diakses
-          langsung tanpa perlu membuat objek.
-        </li>
-      </ul>
-
       <pre>
 // Nama   : Azriel Miracle Yuandre
 // Nim    : 251410024
 // Kelas  : Si2A 
 
-class MathUtils {
-static double pi = 3.14;
-static int add(int x, int y) {
-return x + y;
+sealed class Status {
+  const Status();
 }
+
+class Loading extends Status {
+  const Loading();
 }
+
+class Loaded extends Status {
+  final String data;
+  const Loaded(this.data);
+}
+
+class Failed extends Status {
+  final String error;
+  const Failed(this.error);
+}
+
+void handleStatus(Status status) {
+  switch (status) {
+    case Loading():
+      print('Loading...');
+      break;
+    case Loaded(:final data):
+      print('Data: $data');
+      break;
+    case Failed(:final error):
+      print('Error: $error');
+      break;
+  }
+}
+
 void main() {
-print('Nilai pi : ${MathUtils.pi}');
-print('Result : ${MathUtils.add(10, 20)}');
+  handleStatus(const Loading());
+  handleStatus(const Loaded("Data berhasil"));
+  handleStatus(const Failed("Terjadi error"));
 }
   </pre>
 
-      <button class="btn" onclick="openModal('dec0523715d12ecda4212a847fbfd51f')">
+      <button class="btn" onclick="openModal('3e7b57d53596e601f26dc3a9d09a4fc1')">
         Lihat Kode
       </button>
     </div>
 
-    <h2>Praktik 2- sistem pembayaran</h2>
+    <h2> Studi Kasus: Sistem State Management</h2>
     <div class="card">
       <pre>
 // Nama   : Azriel Miracle Yuandre
 // Nim    : 251410024
 // Kelas  : Si2A 
 
-abstract class MetodePembayaran {
-  void bayar(double jumlah);
+sealed class AppState {}
+
+class LoadingState extends AppState {}
+
+class SuccessState extends AppState {
+  final List<String> items;
+  SuccessState(this.items);
 }
 
-class KartuKredit implements MetodePembayaran {
-  @override
-  void bayar(double jumlah) {
-    print('Bayar $jumlah dengan Kartu Kredit');
+class ErrorState extends AppState {
+  final String message;
+  ErrorState(this.message);
+}
+
+// Handler
+void updateUI(AppState state) {
+  switch (state) {
+    case LoadingState():
+      showLoading();
+      break;
+    case SuccessState(:final items):
+      showItems(items);
+      break;
+    case ErrorState(:final message):
+      showError(message);
+      break;
   }
 }
 
-class EWallet implements MetodePembayaran {
-  @override
-  void bayar(double jumlah) {
-    print('Bayar $jumlah dengan E-Wallet');
+void showLoading() {
+  print('\nLoading...');
+}
+
+void showItems(List<String> items) {
+  print('\nSuccess! Items:');
+  for (int i = 0; i < items.length; i++) {
+    print('   ${i + 1}. ${items[i]}');
   }
 }
 
-class Tunai implements MetodePembayaran {
-  @override
-  void bayar(double jumlah) {
-    print('Bayar $jumlah dengan Tunai');
-  }
+void showError(String message) {
+  print('\nError: $message');
 }
 
-// Contoh penggunaan
 void main() {
-  List<MetodePembayaran> listPembayaran = [
-    KartuKredit(),
-    EWallet(),
-    Tunai(),
-  ];
-  
-  for (var metode in listPembayaran) {
-    metode.bayar(100000);
-  }
+  updateUI(LoadingState());
+  updateUI(SuccessState(["Apple", "Banana", "Orange"]));
+  updateUI(ErrorState("Gagal mengambil data"));
 }
   </pre>
 
-      <button class="btn" onclick="openModal('a9d07d8a56d386459b17222dacbf6235')">
+      <button class="btn" onclick="openModal('94567eeed7c2956d3e1ab549052d5b09')">
         Lihat Kode
       </button>
     </div>
@@ -1583,11 +1603,17 @@ void main() {
       <pre>
 <p>
   <pre>
-1. Polimorfisme: Objek child dapat diperlakukan sebagai parent
-2. Abstract class: Template dengan method abstract/concrete
-3. Interface: Kontrak yang harus diimplementasi
-4. multiple inheritance: mewarisi fungsi dari dua atau lebih hierarki class yang
-berbeda
+Ringkasan & Best Practices
+1. Sealed: Hierarki tertutup, pattern matching aman
+2. Base: Hanya extend (no implement) dari luar
+3. Final: No extend/implement dari luar
+Best Practices:
+1. Gunakan 
+sealed untuk state/result yang terbatas
+2. Gunakan 
+base untuk framework/base class
+3. Gunakan 
+final untuk utility class
      </pre>
         </p>
     </footer>
