@@ -638,15 +638,13 @@ void main() {
    <img src="slide9.png" alt="gambar">
     </div>
 
-    <h2>5. Interface di Dart</h2>
+    <h2> Final Class</h2>
     <div class="card">
       <p>
         <pre>
-  Fakta: sejak Dart 3.0 dart punya keyword 
-  interface
-  Cara: Semua interface class adalah implicit interface
-  Gunakan 
-  implements untuk mengimplementasi interface
+Tidak bisa di-extend atau di-implement dari luar library
+Tapi bisa di-extend/implement di dalam library yang sama
+Berguna untuk class yang ingin "ditutup" untuk modifikasi
         </pre>
       </p>
 
@@ -655,35 +653,33 @@ void main() {
 // Nim    : 251410024
 // Kelas  : SI2A
 
-abstract interface class Flyable {
-  void terbang(); 
-}
+// libfinal.dart
 
-class Bird implements Flyable {
-  @override
-  void terbang() => print('Burung terbang tinggi');
-}
+final class Settings {
+  final String theme;
+  final int fontSize;
 
-class Plane implements Flyable {
-  @override
-  void terbang() => print('Pesawat terbang cepat');
-}
+  Settings({required this.theme, required this.fontSize});
 
-void main() {
-  Bird burung = Bird();
-  Plane pesawat = Plane();
-  
-  burung.terbang();   // Output: Burung terbang tinggi
-  pesawat.terbang();  // Output: Pesawat terbang cepat
+  void showSettings() {
+    print("Theme: $theme, Font Size: $fontSize");
+  }
 }
   </pre>
 
-      <button class="btn" onclick="openModal('85559010d8033d30c41a40e85eb3a936')">
-        Lihat Kode
-      </button>
+      <pre>
+import 'libfinal.dart';
+
+void main() {
+  Settings s = Settings(theme: "Dark", fontSize: 14);
+  s.showSettings();
+}
+      </pre>
+
+ <img src="slide10.png" alt="gambar">
     </div>
 
-    <h2>Perbedaan extends vs implements</h2>
+    <h2> Final Class(lanjutan)</h2>
 <div class="card">
     <table class="comparison-table">
     <thead>
