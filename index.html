@@ -852,6 +852,115 @@ void main() {
       </button>
     </div>
 
+    <h1>Latihan</h1>
+
+    <h3>Buat base class untuk Repository dengan method CRUD</h3>
+
+<div class="card">
+<h3>File 1: repository.dart</h3>
+<pre>
+// Nama   : Azriel Miracle Yuandre
+// Nim    : 251410024
+// Kelas  : Si2A
+  
+// repository.dart
+
+base class Repository {
+  void create() {
+    print("Create data");
+  }
+
+  void read() {
+    print("Read data");
+  }
+
+  void update() {
+    print("Update data");
+  }
+
+  void delete() {
+    print("Delete data");
+  }
+}
+</pre>
+<h3>File 2: testrepository.dart</h3>
+  <pre>
+// Nama   : Azriel Miracle Yuandre
+// Nim    : 251410024
+// Kelas  : Si2A 
+    
+// testrepository.dart
+import 'repository.dart';
+
+base class UserRepository extends Repository {
+  @override
+  void read() {
+    print("Read user data");
+  }
+}
+
+/*
+❌ Tidak boleh karena base class
+class ProductRepository implements Repository {}
+*/
+
+void main() {
+  UserRepository repo = UserRepository();
+
+  repo.create();
+  repo.read();
+  repo.update();
+  repo.delete();
+}
+  </pre>
+
+   <img src="latihan1.png" alt="gambar">
+  
+</div>
+<h3> Buat 
+final class untuk MathUtils dengan static methods</h3>
+<div class="card">
+
+<pre>
+// Nama   : Azriel Miracle Yuandre
+// Nim    : 251410024
+// Kelas  : Si2A 
+  final class MathUtils {
+  static int add(int a, int b) {
+    return a + b;
+  }
+
+  static int subtract(int a, int b) {
+    return a - b;
+  }
+
+  static int multiply(int a, int b) {
+    return a * b;
+  }
+
+  static double divide(int a, int b) {
+    return a / b;
+  }
+}
+
+void main() {
+  print("Tambah: ${MathUtils.add(10, 5)}");
+  print("Kurang: ${MathUtils.subtract(10, 5)}");
+  print("Kali: ${MathUtils.multiply(10, 5)}");
+  print("Bagi: ${MathUtils.divide(10, 5)}");
+}
+</pre>
+
+
+ <button class="btn" onclick="openModal('dec99d681a2cfc957db56ffafd094300')">
+        Lihat Kode
+      </button>
+
+
+  
+</div>
+
+    
 
     <footer>
       <h2>Kesimpulan</h2>
