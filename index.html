@@ -506,32 +506,19 @@ interface (Dart 3.0+)
 // Nama   : Azriel Miracle Yuandre
 // Nim    : 251410024
 // Kelas  : Si2A
-     // nama file: main.dart
-
-sealed class ApiResponse {}
-
-class Success extends ApiResponse {
-  final String message;
-  Success(this.message);
-}
-
-class Error extends ApiResponse {
-  final String errorMessage;
-  Error(this.errorMessage);
-}
+import 'libsealed.dart';
 
 void main() {
-  // contoh penggunaan
-  ApiResponse response = Success("Data berhasil diambil");
+  ApiResponse response = Success("Berhasil!");
 
   if (response is Success) {
-    print("Success: ${response.message}");
+    print(response.message);
   } else if (response is Error) {
-    print("Error: ${response.errorMessage}");
+    print(response.errorMessage);
   }
 }
     </pre>
-<img src="slide 6-2.png" alt="gambar">
+<img src="slide6-4.png" alt="gambar">
     </div>
 
     <h2> Keuntungan Sealed Class</h2>
@@ -546,50 +533,39 @@ void main() {
 // Nim    : 251410024
 // Kelas  : Si2A 
 
-sealed class ApiResponse {}
+import 'libsealed.dart';
 
-class Success extends ApiResponse {
-  final String message;
-  Success(this.message);
-}
-
-class Error extends ApiResponse {
-  final String errorMessage;
-  Error(this.errorMessage);
-}
-
+/*
 class Pending extends ApiResponse {
-  final String message;
-  Pending(this.message);
+// error: tidak boleh karena sealed class
+final String message;
+Pending(this.message);
 }
+*/
 
 void handleResponse(ApiResponse response) {
   if (response is Success) {
     print("Success: ${response.message}");
   } else if (response is Error) {
     print("Error: ${response.errorMessage}");
-  } else if (response is Pending) {
-    print("Pending: ${response.message}");
   }
 }
 
 void main() {
-  handleResponse(Success("Data berhasil"));
-  handleResponse(Error("Terjadi kesalahan"));
-  handleResponse(Pending("Sedang diproses"));
+  handleResponse(Success("Data berhasil diambil"));
 }
       </pre>
 
-<img src="slide7.png" alt="gambar">
+<img src="slide7-2.png" alt="gambar">
 
  </div>
 
-    <h2>3.  Abstract Class</h2>
+    <h2> Base Class</h2>
     <div class="card">
       <p>
-       Tidak bisa diinstansiasi langsung
-        Dapat memiliki method abstract (tanpa implementasi) dan concrete (dengan
-        implementasi)
+      Bisa di-extend, tapi tidak bisa di-implement 
+      Memastikan pewarisan dengan extends, bukan implements
+      Berguna untuk library yang ingin mengontrol inheritance
       </p>
 
       <pre>
@@ -597,52 +573,21 @@ void main() {
 // Nim    : 251410024
 // Kelas  : Si2A
 
-abstract class Kendaraan {
-  String? merk;  // Field concrete
-  
-  void start();  // Method abstract
-  
-  void stop() {  // Method concrete
-    print('Kendaraan berhenti');
+// libbase.dart
+base class Animal {
+  void speak() {
+    print("Animal sound");
   }
-}
-
-class Mobil extends Kendaraan {
-  @override
-  void start() {
-    print('Mobil ${merk ?? 'tanpa merk'} menyala');
-  }
-  
-  // Optional: override method stop jika ingin perilaku berbeda
-  @override
-  void stop() {
-    print('Mobil ${merk ?? 'tanpa merk'} berhenti');
-  }
-}
-
-void main() {
-  Mobil mobil1 = Mobil();
-  mobil1.merk = 'Toyota';
-  mobil1.start();  // Output: Mobil Toyota menyala
-  mobil1.stop();   // Output: Mobil Toyota berhenti
-  
-  Mobil mobil2 = Mobil();
-  mobil2.start();  // Output: Mobil tanpa merk menyala
-  mobil2.stop();   // Output: Mobil tanpa merk berhenti
 }
   </pre>
 
-      <button class="btn" onclick="openModal('ee643f115bd1e132a1774de9f6fe1ceb')">
-        Lihat Kode
-      </button>
+     <img src="slide8-2.png" alt="gambar">
     </div>
 
-    <h2>4.Abstract Method</h2>
+    <h2>Kapan Menggunakan Base Class</h2>
     <div class="card">
-      <p>
        <pre>
-  Method tanpa body (implementasi)
-  Harus di-override di subclass
+Saat ingin membuat hierarki yang hanya boleh di-extend
        </pre>
       </p>
 
@@ -650,33 +595,47 @@ void main() {
 // Nama   : Azriel Miracle Yuandre
 // Nim    : 251410024
 // Kelas  : Si2A
+        
+// testbase.dart
+import 'libbase.dart';
 
-abstract class AlatMusik {
-  void mainkan();  // Abstract method
-  
-  void info() {    // Concrete method
-    print('Ini adalah alat musik');
-  }
-}
-
-class Gitar extends AlatMusik {
+base class Dog extends Animal {
   @override
-  void mainkan() {
-    print('Jreng jreng...');
+  void speak() {
+    print("Woof!");
   }
 }
+
+base class Cat extends Animal {
+  @override
+  void speak() {
+    print("Meow!");
+  }
+}
+
+/*
+❌ Tidak boleh karena Animal adalah base class
+base class BigAnimal implements Animal {
+  @override
+  void speak() {
+    print("Geer!");
+  }
+}
+*/
 
 void main() {
-  Gitar gitar = Gitar();
-  
-  gitar.mainkan();  // Output: Jreng jreng...
-  gitar.info();     // Output: Ini adalah alat musik
+  Animal animal = Animal(); 
+  animal.speak();
+
+  Animal dog = Dog();
+  dog.speak();
+
+  Animal cat = Cat();
+  cat.speak();
 }
   </pre>
 
-      <button class="btn" onclick="openModal('70ae74d84992152c2f879540fb3d00c6')">
-        Lihat Kode
-      </button>
+   <img src="slide9.png" alt="gambar">
     </div>
 
     <h2>5. Interface di Dart</h2>
