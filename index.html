@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Multiple Inheritance & Class Modifiers (Sealed, Base, Final)</title>
+  <title>  Multiple Inheritance & Class Modifiers(Sealed, Base, Final)</title>
 
   <style>
     body {
@@ -162,54 +162,47 @@
     }
 
     table {
-      width: 100%;
-      border-collapse: collapse;
-      background-color: #fff;
-    }
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+  }
 
-    th,
-    td {
-      border: 1px solid #ccc;
-      padding: 15px;
-      text-align: center;
-    }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 15px;
+    text-align: center;
+  }
 
-    th {
-      background-color: #eaeaea;
-      font-size: 18px;
-    }
+  th {
+    background-color: #eaeaea;
+    font-size: 18px;
+  }
 
-    td:first-child {
-      text-align: left;
-      font-family: monospace;
-      font-size: 18px;
-    }
+  td:first-child {
+    text-align: left;
+    font-family: monospace;
+    font-size: 18px;
+  }
 
-    .check {
-      color: green;
-      font-size: 20px;
-      font-weight: bold;
-    }
+  .check {
+    color: green;
+    font-size: 20px;
+    font-weight: bold;
+  }
 
-    .cross {
-      color: red;
-      font-size: 20px;
-      font-weight: bold;
-    }
+  .cross {
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+  }
 
-    .badge {
-      background-color: #ddd;
-      padding: 5px 10px;
-      border-radius: 6px;
-      display: inline-block;
-    }
-
-    img {
-      max-width: 100%;
-      border-radius: 8px;
-      margin-top: 15px;
-      border: 1px solid #e2e8f0;
-    }
+  .badge {
+    background-color: #ddd;
+    padding: 5px 10px;
+    border-radius: 6px;
+    display: inline-block;
+  }
+    
   </style>
 </head>
 
@@ -217,17 +210,17 @@
 
   <div class="container">
 
-    <h1>SESI 5: Multiple Inheritance & Class Modifiers (Sealed, Base, Final)</h1>
+    <h1>SESI 5: Multiple Inheritance & Class Modifiers(Sealed, Base, Final)</h1>
     <p><b>Nama:</b> Azriel Miracle Yuandre</p>
     <p><b>NIM:</b> 251410024</p>
     <p><b>Kelas:</b> SI2A</p>
 
     <div class="card">
-      <h3>Review Sesi 4 – Polimorfisme & Abstraksi</h3>
       <ul>
-        <li>Polimorfisme: Objek subclass sebagai superclass</li>
-        <li>Abstract class: tidak bisa diinstansiasi, bisa punya method abstract/concrete</li>
-        <li>Interface: implicit di Dart, gunakan implements</li>
+        <li>Review Sesi 4 – Polimorfisme & Abstraksi
+            Polimorfisme: Objek subclass sebagai superclass
+            Abstract class: tidak bisa diinstansiasi, bisa punya method abstract/concrete
+            Interface: implicit di Dart, gunakan implements</li>
       </ul>
 
       <pre>
@@ -260,19 +253,20 @@ void main() {
     </div>
 
     <div class="card">
-      <h3>Multiple Inheritance dengan Mixin</h3>
-      <pre>
-* Dart menggunakan keyword Mixins untuk menggunakan beberapa class yang
-  berbeda dalam satu class, tanpa perlu membuat inheritance yang rumit.
-* beberapa bahasa yang mendukung multiple inheritance adalah C++, Python,
-  Scala, Perl, DLL sedangkan Java, C#, dan Kotlin mendukung Single inheritance
-* Multiple inheritance (pewarisan ganda/banyak) digunakan untuk
-  menyelesaikan masalah di mana sebuah objek (subclass) memiliki perilaku atau
-  properti dari dua atau lebih induk yang berbeda (superclass) secara bersamaan,
-  menggabungkan fungsionalitas tanpa redundansi kode. Contohnya adalah
-  pemodelan objek kompleks seperti "Bebek" (Mewarisi bisa berenang dan bisa
-  terbang) atau "Smartphone" (Mewarisi Kamera dan Telepon).
-      </pre>
+      <h3> Multiple Inheritance dengan Mixin</h3>
+     <pre>
+        * Dart menggunakan keyword Mixins untuk menggunakan beberapa class yang
+          berbeda dalam satu class, tanpa perlu membuat inheritance yang rumit.
+        * beberapa bahasa yang mendukung multiple inheritance adalah C++, Python,
+          Scala, Perl, DLL sedangkan Java, C#, dan Kotlin mendukung Single inheritance
+        * Multiple inheritance (pewarisan ganda/banyak) digunakan untuk
+          menyelesaikan masalah di mana sebuah objek (subclass) memiliki perilaku atau
+          properti dari dua atau lebih induk yang berbeda (superclass) secara bersamaan,
+          menggabungkan fungsionalitas tanpa redundansi kode. Contohnya adalah
+          pemodelan objek kompleks seperti "Bebek" (Mewarisi bisa berenang dan bisa
+          terbang) atau "Smartphone" (Mewarisi Kamera dan Telepon).
+       
+     </pre>
     </div>
 
     <div class="card">
@@ -309,13 +303,15 @@ void main() {
 }
 
       </pre>
-      <button class="btn" onclick="openModal('e87d6690db79f0cb0d6b58f204766b9d')">
+       <button class="btn" onclick="openModal('e87d6690db79f0cb0d6b58f204766b9d')">
         Lihat Kode
       </button>
     </div>
 
-    <h2>Studi Kasus: mixin dengan state</h2>
+
+    <h2> Studi Kasus: mixin dengan state</h2>
     <div class="card">
+
       <pre>
 // Nama   : Azriel Miracle Yuandre
 // Nim    : 251410024
@@ -416,9 +412,10 @@ void main() {
       </button>
     </div>
 
-    <h2>Pengantar Class Modifiers</h2>
-    <div class="card">
-      <pre>
+    
+<h2>Pengantar Class Modifiers</h2>
+<div class="card">
+  <pre>
 Apa itu? Keyword untuk mengontrol bagaimana class dapat digunakan
 Tujuan:
 i. Kontrol inheritance/implementasi
@@ -430,17 +427,18 @@ base ,
 final , 
 interface (Dart 3.0+)
 </pre>
-    </div>
+</div>
+    
 
-    <h2>Sealed Class</h2>
+    <h2> Sealed Class</h2>
     <div class="card">
       <pre>
-Tidak bisa di-extend atau di-implement dari luar library
-Membatasi hierarki tipe yang diketahui saat compile-time
-Perfect untuk pattern matching (switch exhaustive)
+        Tidak bisa di-extend atau di-implement dari luar library
+        Membatasi hierarki tipe yang diketahui saat compile-time
+        Perfect untuk pattern matching (switch exhaustive)
       </pre>
-      <h3>File 1: libsealed.dart</h3>
-      <pre>
+ <h3> File 1: libsealed.dart</h3>
+  <pre>   
 // Nama   : Azriel Miracle Yuandre
 // Nim    : 251410024
 // Kelas  : Si2A
@@ -462,8 +460,8 @@ class Loading extends ApiResponse {
   Loading(this.status);
 }
   </pre>
-      <h3>File 2: main.dart</h3>
-      <pre>
+<h3>File 2: main.dart</h3>      
+<pre>
 // Nama   : Azriel Miracle Yuandre
 // Nim    : 251410024
 // Kelas  : Si2A
@@ -479,18 +477,18 @@ void main() {
   }
 }
     </pre>
-      <img src="slide6-4.png" alt="gambar Sealed Class">
+<img src="slide6-4.png" alt="gambar">
     </div>
 
-    <h2>Keuntungan Sealed Class</h2>
+    <h2> Keuntungan Sealed Class</h2>
     <div class="card">
-      <pre>
+<pre>
 1. Exhaustive checking: Compiler tahu semua kemungkinan subclass
 2. Pattern matching: Switch case yang aman
 3. Documentation: Jelas hierarki terbatas
 </pre>
 
-      <pre>
+<pre>
 <h3>File 1: libsealed.dart</h3>
 // Nama   : Azriel Miracle Yuandre
 // Nim    : 251410024
@@ -507,7 +505,7 @@ class Error extends ApiResponse {
   Error(this.errorMessage);
 }
 </pre>
-      <h3>File 2: main.dart</h3>
+ <h3>File 2: main.dart</h3>     
       <pre>
 // Nama   : Azriel Miracle Yuandre
 // Nim    : 251410024
@@ -536,25 +534,26 @@ void main() {
 }
       </pre>
 
-      <img src="slide7-2.png" alt="gambar Keuntungan Sealed Class">
-    </div>
+<img src="slide7-2.png" alt="gambar">
 
-    <h2>Base Class</h2>
+ </div>
+
+    <h2> Base Class</h2>
     <div class="card">
       <p>
-        Bisa di-extend, tapi tidak bisa di-implement
-        Memastikan pewarisan dengan extends, bukan implements
-        Berguna untuk library yang ingin mengontrol inheritance
+      Bisa di-extend, tapi tidak bisa di-implement 
+      Memastikan pewarisan dengan extends, bukan implements
+      Berguna untuk library yang ingin mengontrol inheritance
       </p>
-      <h3>File: libbase.dart</h3>
-      <pre>
-base class Animal {
+<h3>File: libbase.dart</h3>      
+<pre>
+  base class Animal {
   void speak() {
     print("Animal sound");
   }
 }
 </pre>
-      <h3>File: main.dart</h3>
+<h3>File: main.dart</h3>
       <pre>
 // Nama   : Azriel Miracle Yuandre
 // Nim    : 251410024
@@ -568,14 +567,15 @@ base class Animal {
 }
   </pre>
 
-      <img src="slide8-2.png" alt="gambar Base Class">
+     <img src="slide8-2.png" alt="gambar">
     </div>
 
     <h2>Kapan Menggunakan Base Class</h2>
     <div class="card">
-      <pre>
+       <pre>
 Saat ingin membuat hierarki yang hanya boleh di-extend
-      </pre>
+       </pre>
+      </p>
 
       <pre>
 // Nama   : Azriel Miracle Yuandre
@@ -615,22 +615,45 @@ void main() {
 }
   </pre>
 
-      <img src="slide9.png" alt="gambar Kapan Menggunakan Base Class">
+   <img src="slide9.png" alt="gambar">
     </div>
 
-    <h2>Final Class</h2>
+    <h2> Final Class</h2>
     <div class="card">
-      <pre>
+      <p>
+        <pre>
 Tidak bisa di-extend atau di-implement dari luar library
 Tapi bisa di-extend/implement di dalam library yang sama
 Berguna untuk class yang ingin "ditutup" untuk modifikasi
-      </pre>
-      <h3>File 1: libfinal.dart</h3>
+        </pre>
+      </p>
       <pre>
 // Nama   : Azriel Miracle Yuandre
 // Nim    : 251410024
 // Kelas  : SI2A
 
+//--source 
+//libfinal.dart
+//----
+final class Settings {
+final String theme;
+final int fontSize;
+Settings({required this.theme, required this.fontSize});
+void showSettings() {
+print("Theme: ${theme}, Font Size:${fontSize}");
+}
+}
+base class CustomSettings extends Settings {
+CustomSettings(String theme, int fontSize) : super(theme: theme, fontSize: fontSize);
+}
+  </pre>
+<h3>Final Class(lanjutan)</h3>
+      <pre>
+// Nama   : Azriel Miracle Yuandre
+// Nim    : 251410024
+// Kelas  : SI2A       
+<h3>File 1: libfinal.dart</h3>
+      <pre>
 // libfinal.dart
 
 final class Settings {
@@ -644,7 +667,7 @@ final class Settings {
   }
 }
       </pre>
-      <h3>File 2: testfinal.dart</h3>
+<h3>File 2: testfinal.dart</h3>
       <pre>
 // testfinal.dart
 import 'libfinal.dart';
@@ -661,57 +684,61 @@ void main() {
   Settings settings = Settings(theme: "Dark", fontSize: 14);
   settings.showSettings();
 }
+
       </pre>
 
-      <img src="slide11.png" alt="gambar Final Class">
+ <img src="slide11.png" alt="gambar">
     </div>
 
-    <h2>Perbandingan Class Modifiers</h2>
-    <div class="card">
-      <table>
-        <thead>
-          <tr>
-            <th>Modifier</th>
-            <th>Extend di luar</th>
-            <th>Implement di luar</th>
-            <th>Extend di dalam</th>
-            <th>Implement di dalam</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="badge">sealed</span></td>
-            <td><span class="cross">✖</span></td>
-            <td><span class="cross">✖</span></td>
-            <td><span class="check">✔</span></td>
-            <td><span class="cross">✖</span></td>
-          </tr>
-          <tr>
-            <td><span class="badge">base</span></td>
-            <td><span class="check">✔</span></td>
-            <td><span class="cross">✖</span></td>
-            <td><span class="check">✔</span></td>
-            <td><span class="check">✔</span></td>
-          </tr>
-          <tr>
-            <td><span class="badge">final</span></td>
-            <td><span class="cross">✖</span></td>
-            <td><span class="cross">✖</span></td>
-            <td><span class="check">✔</span></td>
-            <td><span class="check">✔</span></td>
-          </tr>
-          <tr>
-            <td>(default)</td>
-            <td><span class="check">✔</span></td>
-            <td><span class="check">✔</span></td>
-            <td><span class="check">✔</span></td>
-            <td><span class="check">✔</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
 
-    <h2>Praktik 1 – Sealed Class dengan Pattern Matching</h2>
+
+<h2>Perbandingan Class Modifiers</h2>
+<div class="card">
+  <table>
+  <tr>
+    <th>Modifier</th>
+    <th>Extend di luar</th>
+    <th>Implement di luar</th>
+    <th>Extend di dalam</th>
+    <th>Implement di dalam</th>
+  </tr>
+
+  <tr>
+    <td><span class="badge">sealed</span></td>
+    <td><span class="cross">✖</span></td>
+    <td><span class="cross">✖</span></td>
+    <td><span class="check">✔</span></td>
+    <td><span class="cross">✖</span></td>
+  </tr>
+
+  <tr>
+    <td><span class="badge">base</span></td>
+    <td><span class="check">✔</span></td>
+    <td><span class="cross">✖</span></td>
+    <td><span class="check">✔</span></td>
+    <td><span class="check">✔</span></td>
+  </tr>
+
+  <tr>
+    <td><span class="badge">final</span></td>
+    <td><span class="cross">✖</span></td>
+    <td><span class="cross">✖</span></td>
+    <td><span class="check">✔</span></td>
+    <td><span class="check">✔</span></td>
+  </tr>
+
+  <tr>
+    <td>(default)</td>
+    <td><span class="check">✔</span></td>
+    <td><span class="check">✔</span></td>
+    <td><span class="check">✔</span></td>
+    <td><span class="check">✔</span></td>
+  </tr>
+
+</table>
+</div>
+    
+    <h2> Praktik 1 – Sealed Class dengan Pattern Matching</h2>
     <div class="card">
       <pre>
 // Nama   : Azriel Miracle Yuandre
@@ -762,7 +789,7 @@ void main() {
       </button>
     </div>
 
-    <h2>Studi Kasus: Sistem State Management</h2>
+    <h2> Studi Kasus: Sistem State Management</h2>
     <div class="card">
       <pre>
 // Nama   : Azriel Miracle Yuandre
@@ -825,24 +852,30 @@ void main() {
       </button>
     </div>
 
+
     <footer>
       <h2>Kesimpulan</h2>
       <pre>
+<p>
+  <pre>
 Ringkasan & Best Practices
 1. Sealed: Hierarki tertutup, pattern matching aman
 2. Base: Hanya extend (no implement) dari luar
 3. Final: No extend/implement dari luar
-
 Best Practices:
-1. Gunakan sealed untuk state/result yang terbatas
-2. Gunakan base untuk framework/base class
-3. Gunakan final untuk utility class
-      </pre>
+1. Gunakan 
+sealed untuk state/result yang terbatas
+2. Gunakan 
+base untuk framework/base class
+3. Gunakan 
+final untuk utility class
+     </pre>
+        </p>
     </footer>
 
   </div>
 
-  <!-- MODAL DINAMIS -->
+  <!-- MODAL DINAMIS (Cukup Satu Saja) -->
   <div id="dynamicModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
@@ -855,9 +888,10 @@ Best Practices:
       const modal = document.getElementById("dynamicModal");
       const iframe = document.getElementById("modalIframe");
 
+      // Load link secara otomatis saat diklik
       iframe.src = `https://dartpad.dev/embed-dart.html?id=${gistId}&null_safety=true&run=true&theme=light`;
       modal.style.display = "block";
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = "hidden"; // Biar ga bisa scroll saat modal buka
     }
 
     function closeModal() {
@@ -865,10 +899,11 @@ Best Practices:
       const iframe = document.getElementById("modalIframe");
 
       modal.style.display = "none";
-      iframe.src = "";
+      iframe.src = ""; // Bersihkan iframe biar ga berat
       document.body.style.overflow = "auto";
     }
 
+    // Klik di luar modal untuk tutup
     window.onclick = function (event) {
       const modal = document.getElementById("dynamicModal");
       if (event.target == modal) closeModal();
