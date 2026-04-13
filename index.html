@@ -161,112 +161,47 @@
       word-wrap: break-word;
     }
 
-    /* Tabel Perbedaan extends vs implements  */
-    .comparison-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
+    table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+  }
 
-    .comparison-table th,
-    .comparison-table td {
-      padding: 14px 20px;
-      text-align: left;
-      border-bottom: 1px solid #e2e8f0;
-    }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 15px;
+    text-align: center;
+  }
 
-    .comparison-table th {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: white;
-      font-weight: 600;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+  th {
+    background-color: #eaeaea;
+    font-size: 18px;
+  }
 
-    .comparison-table tr:last-child td {
-      border-bottom: none;
-    }
+  td:first-child {
+    text-align: left;
+    font-family: monospace;
+    font-size: 18px;
+  }
 
-    .comparison-table td:first-child {
-      font-weight: 600;
-      background-color: #f0f4ff;
-      color: #1e293b;
-    }
+  .check {
+    color: green;
+    font-size: 20px;
+    font-weight: bold;
+  }
 
-    .comparison-table td {
-      color: #1e293b;
-      background-color: white;
-    }
+  .cross {
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+  }
 
-    .badge {
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
-
-    .badge-is-a {
-      background: #d1fae5;
-      color: #065f46;
-      border: 1px solid #34d399;
-    }
-
-    .badge-can-do {
-      background: #fed7aa;
-      color: #92400e;
-      border: 1px solid #f97316;
-    }
-
-    .check {
-      color: #10b981;
-      font-size: 1.1rem;
-      font-weight: bold;
-    }
-
-    .cross {
-      color: #ef4444;
-      font-size: 1.1rem;
-      font-weight: bold;
-    }
-
-    .hint {
-      font-size: 0.7rem;
-      color: #6b7280;
-      display: block;
-      margin-top: 4px;
-    }
-
-    code {
-      background: #f1f5f9;
-      padding: 2px 6px;
-      border-radius: 6px;
-      font-family: monospace;
-      color: #2563eb;
-    }
-
-    ul, ol {
-      margin-left: 20px;
-      margin-bottom: 15px;
-    }
-
-    li {
-      margin-bottom: 5px;
-    }
-
-    .info-card {
-      background: #e0f2fe;
-      border-left: 4px solid #0284c7;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-    }
-
+  .badge {
+    background-color: #ddd;
+    padding: 5px 10px;
+    border-radius: 6px;
+    display: inline-block;
+  }
     
   </style>
 </head>
@@ -502,7 +437,31 @@ interface (Dart 3.0+)
         Membatasi hierarki tipe yang diketahui saat compile-time
         Perfect untuk pattern matching (switch exhaustive)
       </pre>
-    <pre>
+ <h3> File 1: libsealed.dart</h3>
+  <pre>   
+// Nama   : Azriel Miracle Yuandre
+// Nim    : 251410024
+// Kelas  : Si2A
+      
+sealed class ApiResponse {}
+
+class Success extends ApiResponse {
+  final String message;
+  Success(this.message);
+}
+
+class Error extends ApiResponse {
+  final String errorMessage;
+  Error(this.errorMessage);
+}
+
+class Loading extends ApiResponse {
+  final String status;
+  Loading(this.status);
+}
+  </pre>
+<h3>File 2: main.dart</h3>      
+<pre>
 // Nama   : Azriel Miracle Yuandre
 // Nim    : 251410024
 // Kelas  : Si2A
@@ -528,6 +487,25 @@ void main() {
 2. Pattern matching: Switch case yang aman
 3. Documentation: Jelas hierarki terbatas
 </pre>
+
+<pre>
+<h3>File 1: libsealed.dart</h3>
+// Nama   : Azriel Miracle Yuandre
+// Nim    : 251410024
+// Kelas  : Si2A 
+sealed class ApiResponse {}
+
+class Success extends ApiResponse {
+  final String message;
+  Success(this.message);
+}
+
+class Error extends ApiResponse {
+  final String errorMessage;
+  Error(this.errorMessage);
+}
+</pre>
+ <h3>File 2: main.dart</h3>     
       <pre>
 // Nama   : Azriel Miracle Yuandre
 // Nim    : 251410024
@@ -567,7 +545,15 @@ void main() {
       Memastikan pewarisan dengan extends, bukan implements
       Berguna untuk library yang ingin mengontrol inheritance
       </p>
-
+<h3>File: libbase.dart</h3>      
+<pre>
+  base class Animal {
+  void speak() {
+    print("Animal sound");
+  }
+}
+</pre>
+<h3>File: main.dart</h3>
       <pre>
 // Nama   : Azriel Miracle Yuandre
 // Nim    : 251410024
@@ -596,8 +582,12 @@ Saat ingin membuat hierarki yang hanya boleh di-extend
 // Nim    : 251410024
 // Kelas  : Si2A
         
-// testbase.dart
-import 'libbase.dart';
+// File: animal.dart (semua dalam satu file)
+base class Animal {
+  void speak() {
+    print("Animal sound");
+  }
+}
 
 base class Dog extends Animal {
   @override
@@ -613,25 +603,15 @@ base class Cat extends Animal {
   }
 }
 
-/*
-❌ Tidak boleh karena Animal adalah base class
-base class BigAnimal implements Animal {
-  @override
-  void speak() {
-    print("Geer!");
-  }
-}
-*/
-
 void main() {
   Animal animal = Animal(); 
-  animal.speak();
+  animal.speak();  // Output: Animal sound
 
   Animal dog = Dog();
-  dog.speak();
+  dog.speak();     // Output: Woof!
 
   Animal cat = Cat();
-  cat.speak();
+  cat.speak();     // Output: Meow!
 }
   </pre>
 
@@ -680,62 +660,89 @@ void main() {
     </div>
 
     <h2> Final Class(lanjutan)</h2>
-<div class="card">
-    <table class="comparison-table">
-    <thead>
-        <tr>
-            <th>Aspect</th>
-            <th>extends</th>
-            <th>implements</th>
-        </tr>
-    </thead>
-    <tbody>
-      
-        <tr>
-            <td>Hubungan</td>
-            <td><span class="badge badge-is-a">"is-a"</span> (adalah)</td>
-            <td><span class="badge badge-can-do">"can-do"</span> (bisa melakukan)</td>
-        </tr>
-        
-       
-        <tr>
-            <td>Inheritance</td>
-            <td>Mewarisi implementasi <span class="check">✓</span></td>
-            <td>Hanya kontrak <span class="cross">✗</span></td>
-        </tr>
-        
-      
-        <tr>
-            <td>Method</td>
-            <td>Bisa concrete/abstract</td>
-            <td>Semua harus di-implement <span class="cross">✗</span></td>
-         </tr>
-        
-      
-        <tr>
-            <td>Single/Multiple</td>
-            <td>Ya (single inheritance) <span class="check">✓</span></td>
-            <td>Banyak (multiple) <span class="check">✓</span></td>
-         </tr>
-      
-        <tr>
-            <td>Keyword</td>
-            <td><code style="background:rgba(255,255,255,0.1); padding:2px 8px; border-radius:6px;">extends</code></td>
-            <td><code style="background:rgba(255,255,255,0.1); padding:2px 8px; border-radius:6px;">implements</code></td>
-         </tr>
+    <div class="card">
+<h3>File 1: libfinal.dart</h3>
+      <pre>
+// libfinal.dart
 
-        <tr>
-            <td>Contoh</td>
-            <td>
-                <code>class Mobil extends Kendaraan</code>
-                <span class="hint">Mobil IS-A Kendaraan</span>
-            </td>
-            <td>
-                <code>class Bird implements Flyable</code>
-                <span class="hint">Bird CAN-DO Flyable</span>
-            </td>
-         </tr>
-    </tbody>
+final class Settings {
+  final String theme;
+  final int fontSize;
+
+  Settings({required this.theme, required this.fontSize});
+
+  void showSettings() {
+    print("Theme: $theme, Font Size: $fontSize");
+  }
+}
+      </pre>
+<h3>File 2: testfinal.dart</h3>
+      <pre>
+// testfinal.dart
+import 'libfinal.dart';
+
+/*
+❌ Tidak boleh karena Settings adalah final class
+class CustomSettings extends Settings {
+  CustomSettings(String theme, int fontSize)
+      : super(theme: theme, fontSize: fontSize);
+}
+*/
+
+void main() {
+  Settings settings = Settings(theme: "Dark", fontSize: 14);
+  settings.showSettings();
+}
+      </pre>
+
+ <img src="slide11.png" alt="gambar">
+</div>
+
+
+
+<h2>Perbandingan Class Modifiers</h2>
+<div class="card">
+  <table>
+  <tr>
+    <th>Modifier</th>
+    <th>Extend di luar</th>
+    <th>Implement di luar</th>
+    <th>Extend di dalam</th>
+    <th>Implement di dalam</th>
+  </tr>
+
+  <tr>
+    <td><span class="badge">sealed</span></td>
+    <td><span class="cross">✖</span></td>
+    <td><span class="cross">✖</span></td>
+    <td><span class="check">✔</span></td>
+    <td><span class="cross">✖</span></td>
+  </tr>
+
+  <tr>
+    <td><span class="badge">base</span></td>
+    <td><span class="check">✔</span></td>
+    <td><span class="cross">✖</span></td>
+    <td><span class="check">✔</span></td>
+    <td><span class="check">✔</span></td>
+  </tr>
+
+  <tr>
+    <td><span class="badge">final</span></td>
+    <td><span class="cross">✖</span></td>
+    <td><span class="cross">✖</span></td>
+    <td><span class="check">✔</span></td>
+    <td><span class="check">✔</span></td>
+  </tr>
+
+  <tr>
+    <td>(default)</td>
+    <td><span class="check">✔</span></td>
+    <td><span class="check">✔</span></td>
+    <td><span class="check">✔</span></td>
+    <td><span class="check">✔</span></td>
+  </tr>
+
 </table>
 </div>
     
