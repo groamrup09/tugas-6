@@ -202,7 +202,25 @@
     border-radius: 6px;
     display: inline-block;
   }
-    
+  .error-card {
+  background: #fee2e2;
+  border-left: 5px solid #dc2626;
+}
+
+.error-card pre {
+  background: #fff5f5;
+  border-color: #fecaca;
+}
+
+.badge-error {
+  background-color: #dc2626;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
   </style>
 </head>
 
@@ -430,19 +448,21 @@ interface (Dart 3.0+)
 </div>
     
 
-    <h2> Sealed Class</h2>
+    <!-- ==================== SEALED CLASS ==================== -->
+    <h2>1. Sealed Class</h2>
     <div class="card">
       <pre>
-        Tidak bisa di-extend atau di-implement dari luar library
-        Membatasi hierarki tipe yang diketahui saat compile-time
-        Perfect untuk pattern matching (switch exhaustive)
+Tidak bisa di-extend atau di-implement dari luar library
+Membatasi hierarki tipe yang diketahui saat compile-time
+Perfect untuk pattern matching (switch exhaustive)
       </pre>
- <h3> File 1: libsealed.dart</h3>
-  <pre>   
-// Nama   : Azriel Miracle Yuandre
-// Nim    : 251410024
-// Kelas  : Si2A
       
+      <h3>✅ File 1: libsealed.dart (Library)</h3>
+      <pre>   
+// Nama: Azriel Miracle Yuandre
+// NIM: 251410024
+// Kelas: SI2A    
+
 sealed class ApiResponse {}
 
 class Success extends ApiResponse {
@@ -455,134 +475,214 @@ class Error extends ApiResponse {
   Error(this.errorMessage);
 }
 
-class Loading extends ApiResponse {
-  final String status;
-  Loading(this.status);
-}
-  </pre>
-<h3>File 2: main.dart</h3>      
-<pre>
-// Nama   : Azriel Miracle Yuandre
-// Nim    : 251410024
-// Kelas  : Si2A
-import 'libsealed.dart';
-
-void main() {
-  ApiResponse response = Success("Berhasil!");
-
-  if (response is Success) {
-    print(response.message);
-  } else if (response is Error) {
-    print(response.errorMessage);
-  }
-}
-    </pre>
-<img src="slide6-4.png" alt="gambar">
-    </div>
-
-    <h2> Keuntungan Sealed Class</h2>
-    <div class="card">
-<pre>
-1. Exhaustive checking: Compiler tahu semua kemungkinan subclass
-2. Pattern matching: Switch case yang aman
-3. Documentation: Jelas hierarki terbatas
-</pre>
-
-<pre>
-<h3>File 1: libsealed.dart</h3>
-// Nama   : Azriel Miracle Yuandre
-// Nim    : 251410024
-// Kelas  : Si2A 
-sealed class ApiResponse {}
-
-class Success extends ApiResponse {
-  final String message;
-  Success(this.message);
-}
-
-class Error extends ApiResponse {
-  final String errorMessage;
-  Error(this.errorMessage);
-}
-</pre>
- <h3>File 2: main.dart</h3>     
+class Loading extends ApiResponse {}
+      </pre>
+      
+      <h3>✅ File 2: main.dart (Pengguna - Library Berbeda)</h3>      
       <pre>
 // Nama   : Azriel Miracle Yuandre
 // Nim    : 251410024
-// Kelas  : Si2A 
-
+// Kelas  : Si2A
 import 'libsealed.dart';
 
-/*
-class Pending extends ApiResponse {
-// error: tidak boleh karena sealed class
-final String message;
-Pending(this.message);
-}
-*/
-
+// ✅ BENAR - Bisa menggunakan class yang sudah ada
 void handleResponse(ApiResponse response) {
   if (response is Success) {
     print("Success: ${response.message}");
   } else if (response is Error) {
     print("Error: ${response.errorMessage}");
+  } else if (response is Loading) {
+    print("Loading...");
   }
 }
 
 void main() {
   handleResponse(Success("Data berhasil diambil"));
+  handleResponse(Error("Koneksi gagal"));
+  handleResponse(Loading());
 }
       </pre>
+    </div>
 
-<img src="slide7-2.png" alt="gambar">
+    <div class="card error-card">
+      <span class="badge-error">❌ CONTOH ERROR - Sealed Class</span>
+      <pre>
+// File yang SAMA (main.dart) - tapi ini SALAH!
 
- </div>
-
-    <h2> Base Class</h2>
-    <div class="card">
-      <p>
-      Bisa di-extend, tapi tidak bisa di-implement 
-      Memastikan pewarisan dengan extends, bukan implements
-      Berguna untuk library yang ingin mengontrol inheritance
-      </p>
-<h3>File: libbase.dart</h3>      
-<pre>
-  base class Animal {
-  void speak() {
-    print("Animal sound");
-  }
+// ❌ SALAH - Tidak bisa extend sealed class dari luar library
+/*
+class Pending extends ApiResponse {
+  // ERROR: The class 'ApiResponse' can't be extended outside of its library
+  // because it's a sealed class.
+  final String message;
+  Pending(this.message);
 }
-</pre>
-<h3>File: main.dart</h3>
+*/
+
+// ❌ SALAH - Tidak bisa implement sealed class dari luar library
+/*
+class MockResponse implements ApiResponse {
+  // ERROR: The class 'ApiResponse' can't be implemented outside of its library
+  // because it's a sealed class.
+}
+*/
+      </pre>
+      <img src="slide6-5.png" alt="gambar" style="max-width:100%; margin-top:10px;">
+    </div>
+
+    <!-- ==================== KEUNTUNGAN SEALED CLASS ==================== -->
+    <h2>Keuntungan Sealed Class</h2>
+    <div class="card">
+      <pre>
+1. Exhaustive checking: Compiler tahu semua kemungkinan subclass
+2. Pattern matching: Switch case yang aman
+3. Documentation: Jelas hierarki terbatas
+      </pre>
+
+      <h3>File 1: libsealed.dart</h3>
       <pre>
 // Nama   : Azriel Miracle Yuandre
 // Nim    : 251410024
-// Kelas  : Si2A
+// Kelas  : Si2A 
+sealed class ApiResponse {}
 
-// libbase.dart
+class Success extends ApiResponse {
+  final String message;
+  Success(this.message);
+}
+
+class Error extends ApiResponse {
+  final String errorMessage;
+  Error(this.errorMessage);
+}
+      </pre>
+      
+      <h3>File 2: main.dart</h3>     
+      <pre>
+// Nama   : Azriel Miracle Yuandre
+// Nim    : 251410024
+// Kelas  : Si2A 
+
+import 'libsealed.dart';
+
+void handleResponse(ApiResponse response) {
+  // Switch harus exhaustive (semua kemungkinan subclass ditangani)
+  switch (response) {
+    case Success(message: final msg):
+      print("Success: $msg");
+    case Error(errorMessage: final err):
+      print("Error: $err");
+    // Jika ada subclass baru, compiler akan warning!
+  }
+}
+
+void main() {
+  handleResponse(Success("Data berhasil diambil"));
+  handleResponse(Error("Gagal koneksi"));
+}
+      </pre>
+      <img src="slide7-2.png" alt="gambar" style="max-width:100%; margin-top:10px;">
+    </div>
+
+    <!-- ==================== BASE CLASS ==================== -->
+    <h2>2. Base Class</h2>
+    <div class="card">
+      <p>
+        <strong>Aturan:</strong> Bisa di-extend dari luar library, tapi TIDAK BISA di-implement dari luar library.<br>
+        Memastikan pewarisan dengan extends, bukan implements.<br>
+        Berguna untuk library yang ingin mengontrol inheritance.
+      </p>
+      
+      <h3>✅ File 1: libbase.dart (Library)</h3>      
+      <pre>
+// Nama: Azriel Miracle Yuandre
+// NIM: 251410024
+// Kelas: SI2A
+
 base class Animal {
   void speak() {
     print("Animal sound");
   }
 }
-  </pre>
 
-     <img src="slide8-2.png" alt="gambar">
+// ✅ BENAR - Di dalam library yang sama bisa implement
+base class Mammal implements Animal {
+  @override
+  void speak() {
+    print("Mammal sound");
+  }
+}
+      </pre>
+      
+      <h3>✅ File 2: main.dart (Pengguna - Library Berbeda)</h3>
+      <pre>
+// Nama   : Azriel Miracle Yuandre
+// Nim    : 251410024
+// Kelas  : Si2A
+
+import 'libbase.dart';
+
+// ✅ BENAR - Base class BISA di-extend dari luar library
+base class Dog extends Animal {
+  @override
+  void speak() {
+    print("Woof!");
+  }
+}
+
+base class Cat extends Animal {
+  @override
+  void speak() {
+    print("Meow!");
+  }
+}
+
+void main() {
+  Animal animal = Animal(); 
+  animal.speak();  // Output: Animal sound
+
+  Animal dog = Dog();
+  dog.speak();     // Output: Woof!
+
+  Animal cat = Cat();
+  cat.speak();     // Output: Meow!
+}
+      </pre>
+      <img src="slide8-2.png" alt="gambar" style="max-width:100%; margin-top:10px;">
     </div>
 
+    <div class="card error-card">
+      <span class="badge-error">❌ CONTOH ERROR - Base Class</span>
+      <pre>
+// File: main.dart (Pengguna - Library Berbeda)
+
+// ❌ SALAH - Base class TIDAK BISA di-implement dari luar library
+/*
+base class BigAnimal implements Animal {
+  // ERROR: The class 'Animal' can't be implemented outside of its library
+  // because it's a base class.
+  @override
+  void speak() {
+    print("Geer!");
+  }
+}
+*/
+      </pre>
+    </div>
+
+    <!-- ==================== KAPAN MENGGUNAKAN BASE CLASS ==================== -->
     <h2>Kapan Menggunakan Base Class</h2>
     <div class="card">
-       <pre>
-Saat ingin membuat hierarki yang hanya boleh di-extend
-       </pre>
-      </p>
+      <pre>
+Saat ingin membuat hierarki yang hanya boleh di-extend (bukan di-implement) dari luar library
+      </pre>
 
       <pre>
 // Nama   : Azriel Miracle Yuandre
 // Nim    : 251410024
 // Kelas  : Si2A
         
-// File: animal.dart (semua dalam satu file)
+// File: animal.dart (semua dalam SATU file/library)
 base class Animal {
   void speak() {
     print("Animal sound");
@@ -613,49 +713,26 @@ void main() {
   Animal cat = Cat();
   cat.speak();     // Output: Meow!
 }
-  </pre>
-
-   <img src="slide9.png" alt="gambar">
+      </pre>
+      <img src="slide9.png" alt="gambar" style="max-width:100%; margin-top:10px;">
     </div>
 
-    <h2> Final Class</h2>
+    <!-- ==================== FINAL CLASS ==================== -->
+    <h2>3. Final Class</h2>
     <div class="card">
-      <p>
-        <pre>
+      <pre>
 Tidak bisa di-extend atau di-implement dari luar library
 Tapi bisa di-extend/implement di dalam library yang sama
-Berguna untuk class yang ingin "ditutup" untuk modifikasi
-        </pre>
-      </p>
+Berguna untuk class yang ingin "ditutup" untuk modifikasi dari luar
+      </pre>
+      
+      <h3>✅ File 1: libfinal.dart (Library)</h3>
       <pre>
 // Nama   : Azriel Miracle Yuandre
 // Nim    : 251410024
 // Kelas  : SI2A
 
-//--source 
-//libfinal.dart
-//----
-final class Settings {
-final String theme;
-final int fontSize;
-Settings({required this.theme, required this.fontSize});
-void showSettings() {
-print("Theme: ${theme}, Font Size:${fontSize}");
-}
-}
-base class CustomSettings extends Settings {
-CustomSettings(String theme, int fontSize) : super(theme: theme, fontSize: fontSize);
-}
-  </pre>
-<h3>Final Class(lanjutan)</h3>
-      <pre>
-// Nama   : Azriel Miracle Yuandre
-// Nim    : 251410024
-// Kelas  : SI2A       
-<h3>File 1: libfinal.dart</h3>
-      <pre>
 // libfinal.dart
-
 final class Settings {
   final String theme;
   final int fontSize;
@@ -666,30 +743,80 @@ final class Settings {
     print("Theme: $theme, Font Size: $fontSize");
   }
 }
+
+// ✅ BENAR - Di dalam library yang SAMA bisa di-extend
+final class AdvancedSettings extends Settings {
+  AdvancedSettings(String theme, int fontSize)
+      : super(theme: theme, fontSize: fontSize);
+  
+  void reset() {
+    print("Settings reset!");
+  }
+}
+
+// ✅ BENAR - Di dalam library yang SAMA bisa di-implement
+final class MockSettings implements Settings {
+  @override
+  String get theme => "Light";
+  @override
+  int get fontSize => 12;
+  
+  @override
+  void showSettings() {
+    print("Mock: Theme=$theme, Font Size=$fontSize");
+  }
+}
       </pre>
-<h3>File 2: testfinal.dart</h3>
+      
+      <h3>✅ File 2: testfinal.dart (Pengguna - Library Berbeda)</h3>
       <pre>
 // testfinal.dart
 import 'libfinal.dart';
 
+void main() {
+  // ✅ BENAR - Bisa menggunakan class final
+  Settings settings = Settings(theme: "Dark", fontSize: 14);
+  settings.showSettings(); // Output: Theme: Dark, Font Size: 14
+  
+  // ✅ BENAR - Bisa menggunakan class yang di-extend di dalam library
+  AdvancedSettings advanced = AdvancedSettings("Dark", 14);
+  advanced.showSettings(); // Output: Theme: Dark, Font Size: 14
+  advanced.reset();        // Output: Settings reset!
+}
+      </pre>
+      <img src="slide11.png" alt="gambar" style="max-width:100%; margin-top:10px;">
+    </div>
+
+    <div class="card error-card">
+      <span class="badge-error">❌ CONTOH ERROR - Final Class</span>
+      <pre>
+// File: testfinal.dart (Pengguna - Library Berbeda)
+
+// ❌ SALAH - Final class TIDAK BISA di-extend dari luar library
 /*
-❌ Tidak boleh karena Settings adalah final class
 class CustomSettings extends Settings {
+  // ERROR: The class 'Settings' can't be extended outside of its library
+  // because it's a final class.
   CustomSettings(String theme, int fontSize)
       : super(theme: theme, fontSize: fontSize);
 }
 */
 
-void main() {
-  Settings settings = Settings(theme: "Dark", fontSize: 14);
-  settings.showSettings();
+// ❌ SALAH - Final class TIDAK BISA di-implement dari luar library
+/*
+class MySettings implements Settings {
+  // ERROR: The class 'Settings' can't be implemented outside of its library
+  // because it's a final class.
+  @override
+  String get theme => "Blue";
+  @override
+  int get fontSize => 16;
+  @override
+  void showSettings() {}
 }
-
+*/
       </pre>
-
- <img src="slide11.png" alt="gambar">
     </div>
-
 
 
 <h2>Perbandingan Class Modifiers</h2>
