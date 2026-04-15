@@ -506,6 +506,8 @@ void main() {
   handleResponse(Loading());
 }
       </pre>
+      <img src="slide6-5.png" alt="gambar" style="max-width:100%; margin-top:10px;">
+
     </div>
 
     <div class="card error-card">
@@ -584,6 +586,7 @@ void main() {
   handleResponse(Error("Gagal koneksi"));
 }
       </pre>
+       <img src="slide7-3.png" alt="gambar" style="max-width:100%; margin-top:10px;">
     </div>
 
     <!-- ==================== BASE CLASS ==================== -->
@@ -624,16 +627,16 @@ base class Mammal extends Animal {
 
 import 'libbase.dart';
 
-// ✅ BENAR 1: Base class BISA di-extend dari luar library
-base class Dog extends Animal {
+// ✅ BENAR - Pakai final (karena tidak perlu diwariskan lagi)
+final class Dog extends Animal {
   @override
   void speak() {
     print("Woof!");
   }
 }
 
-// ✅ BENAR 2: Base class BISA di-extend dari luar library
-base class Cat extends Animal {
+// ✅ BENAR - Pakai final (karena tidak perlu diwariskan lagi)
+final class Cat extends Animal {
   @override
   void speak() {
     print("Meow!");
@@ -651,6 +654,8 @@ void main() {
   cat.speak();     // Output: Meow!
 }
       </pre>
+      <img src="slide9.png" alt="gambar" style="max-width:100%; margin-top:10px;">
+
     </div>
 
     <div class="card error-card">
@@ -732,6 +737,7 @@ void main() {
   settings.showSettings(); // Output: Theme: Dark, Font Size: 14
 }
       </pre>
+      <img src="slide11.png" alt="gambar" style="max-width:100%; margin-top:10px;">
     </div>
 
     <div class="card error-card">
